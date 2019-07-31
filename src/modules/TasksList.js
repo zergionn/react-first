@@ -1,5 +1,6 @@
 import React from 'react';
 import Task from "./Task";
+import TasksData from "../data/test.json";
 
 class TasksList extends React.Component {
     state = {
@@ -8,28 +9,7 @@ class TasksList extends React.Component {
     }
 
     getTasksList () {
-        return [{
-            title: 'Task1',
-            desc: 'Description 1'
-        },{
-            title: 'Task2',
-            desc: 'Description 2'
-        },{
-            title: 'Task3',
-            desc: 'Description 3'
-        },{
-            title: 'Task4',
-            desc: 'Description 4'
-        },{
-            title: 'Task5',
-            desc: 'Description 5'
-        },{
-            title: 'Task6',
-            desc: 'Description 6'
-        },{
-            title: 'Task7',
-            desc: 'Description 7'
-        }]
+        return TasksData
     }
 
     removeTask (index) {
