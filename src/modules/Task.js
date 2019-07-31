@@ -3,6 +3,8 @@ import TextField from "./inputs/TextField";
 
 class Task extends React.Component {
     state = {
+        title: this.props.task.title,
+        desc: this.props.task.desc,
         status: 'read'
     }
 
@@ -10,8 +12,21 @@ class Task extends React.Component {
         this.props.removeTask(this.props.index);
     }
 
+    update () {
+        this.props.updateTask(this.props.index, this.refs.newTitle.state.value, this.refs.newDesc.state.value);
+        this.setStatus('read');
+    }
+
+    cancelEdit () {
+        this.setState({
+            title: this.props.task.title,
+            desc: this.props.task.desc,
+            status: 'read'
+        });
+    }
+
     setStatus (status) {
-        this.setState({status: status})
+        this.setState({status: status});
     }
 
     renderActions () {
@@ -19,16 +34,16 @@ class Task extends React.Component {
             case 'read':
             default:
                 return (
-                    <div className="actions">
+                    <div className="actions-wrapper">
                         <button className="button -edit" onClick={this.setStatus.bind(this, 'edit')}>Edit</button>
                         <button className="button -delete" onClick={this.remove.bind(this)}>Delete</button>
                     </div>
                 )
             case 'edit':
                 return (
-                    <div className="actions">
-                        <button className="button -save">Save</button>
-                        <button className="button -cancel" onClick={this.setStatus.bind(this, 'read')}>Cancel</button>
+                    <div className="actions-wrapper">
+                        <button className="button -save" onClick={this.update.bind(this)}>Save</button>
+                        <button className="button -cancel" onClick={this.cancelEdit.bind(this)}>Cancel</button>
                     </div>
                 )
         }
@@ -37,8 +52,8 @@ class Task extends React.Component {
     render (props) {
         return (
             <div className="task-container">
-                <TextField value={this.props.task.title} status={this.state.status}/>
-                <TextField value={this.props.task.desc} status={this.state.status}/>
+                <TextField value={this.state.title}  ref="newTitle" status={this.state.status}/>
+                <TextField value={this.state.desc}  ref="newDesc" status={this.state.status}/>
                 {this.renderActions()}
             </div>
         );

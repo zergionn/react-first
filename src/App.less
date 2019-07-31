@@ -1,0 +1,44 @@
+.tasks-container {
+    & {
+        padding: 30px;
+    }
+
+    > .title {
+        display: block;
+        font-size: 30px;
+        margin-bottom: 50px;
+    }
+
+    > .list {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 30px;
+    }
+}
+
+.task-container {
+    padding: 20px;
+    background: #bedaf9;
+}
+
+.text-wrapper {
+    margin-bottom: 15px;
+}
+
+.input-wrapper {
+    margin-bottom: 15px;
+}
+
+.actions-wrapper {
+    .button {
+        padding: 10px 20px;
+        color: #fff;
+        background: linear-gradient(#1973c5, #1687c6);
+        border: none;
+        cursor: pointer;
+    }
+
+    .button:not(:last-of-type) {
+        margin-right: 15px;
+    }
+}
